@@ -87,3 +87,11 @@ resources/com.makeev.model/Engine.hbm.xml
     </class>
 </hibernate-mapping>
 ```
+## Hibernate simple using
+```java
+// main session object might be sent to DAO
+SessionFactory factory = new Configuration().configure().buildSessionFactory();
+//then in DAO
+final Session session = factory.openSession();
+// then work with session
+```
