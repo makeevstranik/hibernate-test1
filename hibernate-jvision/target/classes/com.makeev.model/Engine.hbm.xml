@@ -1,12 +1,12 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.makeev.model">
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
 
-   <class name="Engine" table="engines">
-      <property name="power" column="power"/>
+   <class name="com.makeev.model.Engine" table="engines">
       <id name="model" column="model" />
+      <property name="power" column="power"/>
    </class>
 </hibernate-mapping>

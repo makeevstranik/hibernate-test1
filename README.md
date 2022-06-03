@@ -53,26 +53,18 @@ public class Engine {
 - create `resources/hibernate-jvision.iml` with help of idea `File --> ProjectStructure --> Modules --> Add Hibernate --> Add`
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>
-  <session-factory>
-    <!-- Database connection settings -->
-    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-jvision</property>
-    <property name="connection.username">root</property>
-    <property name="connection.password">***</property>
-    <!-- JDBC connection pool (use the built-in) -->
-    <property name="connection.pool_size">1</property>
-    <!-- SQL dialect -->
-    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-    <!-- Enable Hibernate's automatic session context management -->
-    <property name="current_session_context_class">thread</property>
-    <!-- Echo all executed SQL to stdout -->
-    <property name="show_sql">true</property>
-    <mapping resource="com.makeev.model/Engine.hbm.xml"/>
-  </session-factory>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-jvision</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+
+        <property name="connection.username">root</property>
+        <property name="connection.password">5729757297</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+
+        <mapping resource="com.makeev.model/Engine.hbm.xml"/>
+    </session-factory>
 </hibernate-configuration>
 ```
 - create mapping file for class entity (Engine) in `resources` in the same naming folder for example:
@@ -82,16 +74,16 @@ java/com.makeev.model/Engine.java
 resources/com.makeev.model/Engine.hbm.xml
 ```
 ```xml
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.makeev.model">
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
 
-   <class name="Engine" table="engines">
-      <property name="power" column="power"/>
-      <id name="model" column="model" />
-   </class>
+    <class name="com.makeev.model.Engine" table="engines">
+        <id name="model" column="model" />
+        <property name="power" column="power"/>
+    </class>
 </hibernate-mapping>
 ```
