@@ -4,6 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.makeev.model">
+
    <class name="Engine" table="engines">
       <property name="power" column="power"/>
       <id name="model" column="model" />
