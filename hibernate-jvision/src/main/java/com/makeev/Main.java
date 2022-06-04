@@ -1,5 +1,6 @@
 package com.makeev;
 
+import com.makeev.DAO.CarDAO;
 import com.makeev.DAO.DAO;
 import com.makeev.DAO.EngineDAO;
 import com.makeev.model.Car;
@@ -16,16 +17,12 @@ public class Main {
 
         try (SessionFactory factory = new Configuration().configure().buildSessionFactory()) {
             DAO<Engine, Integer> engineDAO = new EngineDAO(factory);
+            DAO<Car, Integer> carDAO = new CarDAO(factory);
             Engine engine = engineDAO.read(1);
+            Car car = carDAO.read(1);
             System.out.println(engine);
+            System.out.println(car);
 
-            engine.setCarMark("honda-modern");
-            engineDAO.update(engine);
-
-            HashSet<Car> cars = new HashSet<>();
-            cars.add(new Car("mazda", 23900));
-            cars.add(new Car("mazda", 111111));
-            engineDAO.create(new Engine("mazda-power200", 236, "mazda", cars));
 
 
         }

@@ -14,15 +14,6 @@ public class EngineDAO implements DAO<Engine, Integer> {
         this.factory = factory;
     }
 
-    @Override
-    public void create(@NotNull final Engine engine) {
-        try(final Session session = factory.openSession()) {
-            System.out.println("------");
-            session.beginTransaction();
-            session.save(engine);
-            session.getTransaction().commit();
-        }
-    }
 
     @Override
     public Engine read(@NotNull final Integer id) {
@@ -32,21 +23,5 @@ public class EngineDAO implements DAO<Engine, Integer> {
         }
     }
 
-    @Override
-    public void update(@NotNull final Engine engine) {
-        try(final Session session = factory.openSession()) {
-            session.beginTransaction();
-            session.update(engine);
-            session.getTransaction().commit();
-        }
-    }
 
-    @Override
-    public void delete(@NotNull final Engine engine) {
-        try(final Session session = factory.openSession()) {
-            session.beginTransaction();
-            session.delete(engine);
-            session.getTransaction().commit();
-        }
-    }
 }

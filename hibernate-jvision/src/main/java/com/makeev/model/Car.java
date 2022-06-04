@@ -1,16 +1,29 @@
 package com.makeev.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import java.util.Set;
+
 @NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(exclude = "engines")
+@ToString
 public class Car {
+
+    @Getter
+    @Setter
     private int id;
+
+    @Getter
+    @Setter
     private String mark;
+
+    @Getter
+    @Setter
     private int cost;
+
+    @Getter
+    @Setter
+    private Set<Engine> engines;
 
     public Car(String mark, int cost) {
         this.mark = mark;

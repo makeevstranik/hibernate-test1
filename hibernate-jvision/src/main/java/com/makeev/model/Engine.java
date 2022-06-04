@@ -8,20 +8,31 @@ import java.util.Set;
  * Author : Makeev Evgeny
  * Created 03/06/22
  */
-@Data
+
 @NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(exclude = "cars")
+@ToString
 public class Engine {
+
+    @Getter
+    @Setter
     private int id;
+
+    @Getter
+    @Setter
     private String name;
+
+    @Getter
+    @Setter
     private int power;
-    private String carMark;
+
+    @Getter
+    @Setter
     private Set<Car> cars;
 
-    public Engine(String name, int power, String carMark, Set<Car> cars) {
+    public Engine(String name, int power,  Set<Car> cars) {
         this.name = name;
         this.power = power;
-        this.carMark = carMark;
         this.cars = cars;
     }
 }
