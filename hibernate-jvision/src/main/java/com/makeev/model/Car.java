@@ -6,7 +6,7 @@ import java.util.Set;
 
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "engines")
-@ToString
+
 public class Car {
 
     @Getter

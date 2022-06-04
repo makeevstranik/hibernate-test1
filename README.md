@@ -181,3 +181,34 @@ public class Car {
     }
 }
 ```
+## Hibernate many-to-many Video 4 (git branch p4_manyToMany)
+three tables here
+```xml
+   <class name="com.makeev.model.Engine" table="engines_p4">
+      <id name="id" type="int" column="id"> <generator class ="identity"/></id>
+      <property name="name" column="name" />
+      <property name="power" column="power"/>
+      <!-- join cars to this engine-->
+      <set name="cars" table="cars_engines_p4" lazy="true" fetch="join" cascade="none">
+         <key column="engine_id" not-null="true"/>
+         <many-to-many class="com.makeev.model.Car">
+            <column name="car_id" not-null="true"/>
+                 </many-to-many>
+      </set>
+   </class>
+
+<class name="com.makeev.model.Car" table="cars_p4">
+    <id name="id" type="int" column="id"> <generator class ="identity"/></id>
+    <property name="mark" column="mark" />
+    <property name="cost" column="cost"/>
+
+    <set name="engines" table="cars_engines_p4" lazy="true" fetch="join" cascade="none">
+        <key>
+            <column name="car_id" not-null="true"/>
+        </key>
+        <many-to-many class="com.makeev.model.Engine">
+            <column name="engine_id" not-null="true"/>
+        </many-to-many>
+    </set>
+</class>
+```
