@@ -95,3 +95,35 @@ SessionFactory factory = new Configuration().configure().buildSessionFactory();
 final Session session = factory.openSession();
 // then work with session
 ```
+## Hibernate many-to-one Video 2 (git branch p2_manyToOne)
+two tables here
+```xml
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+
+    <class name="com.makeev.model.Car" table="cars_p2">
+        <id name="id" type="int" column="id"> <generator class ="identity"/></id>
+        <property name="mark" column="mark" />
+        <property name="model" column="model"/>
+        <!-- join engine to car (many cars links to one engine)-->
+        <!-- cascade - what to do with child(engine) when parent(car) has been changed -->
+        <!-- save-update - if new car(add to cars table) has new engine - add new engine to engines_p2 table  -->
+        <!-- default - do nothing, change only cars table-->
+        <many-to-one name="engine" column="engine_id"
+                     class="com.makeev.model.Engine"
+                     cascade="save-update" />
+    </class>
+</hibernate-mapping>
+```
+pay attention on nested classes:
+```java
+    public Car read(@NotNull final Integer id) {
+        try(final Session session = factory.openSession()) {
+            final Car result = session.get(Car.class, id);
+    // for nested objects 
+            if (result != null) {
+                Hibernate.initialize(result.getEngine());
+            }
+            return result;
+        }
+    }
+```
