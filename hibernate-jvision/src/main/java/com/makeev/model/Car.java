@@ -10,12 +10,10 @@ import lombok.NoArgsConstructor;
 public class Car {
     private int id;
     private String mark;
-    private String model;
-    private Engine engine;
+    private int cost;
 
-    public Car(String mark, String model, Engine engine) {
+    public Car(String mark, int cost) {
         this.mark = mark;
-        this.model = model;
-        this.engine = engine;
+        this.cost = cost;
     }
 }

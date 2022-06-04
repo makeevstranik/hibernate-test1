@@ -5,10 +5,17 @@
 
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
 
-   <class name="com.makeev.model.Engine" table="engines_p2">
+   <class name="com.makeev.model.Engine" table="engines_p3">
       <id name="id" type="int" column="id"> <generator class ="identity"/></id>
-      <property name="model" column="model" />
+      <property name="name" column="name" />
       <property name="power" column="power"/>
+      <property name="carMark" column="car_mark"/>
+      <!-- join cars to this engine-->
+      <set name="cars" table="cars_p3" cascade="all" fetch="join">
+         <!-- column="mark" is from table cars_p3, property-ref="carMark" - is from Engine class -->
+         <key column="mark" property-ref="carMark"/>
+         <one-to-many class="com.makeev.model.Car"/>
+      </set>
    </class>
 
 </hibernate-mapping>

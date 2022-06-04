@@ -127,3 +127,57 @@ pay attention on nested classes:
         }
     }
 ```
+
+## Hibernate one-to-many Video 3 (git branch p3_oneToMany)
+two tables here
+```xml
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+
+   <class name="com.makeev.model.Engine" table="engines_p3">
+      <id name="id" type="int" column="id"> <generator class ="identity"/></id>
+      <property name="name" column="name" />
+      <property name="power" column="power"/>
+      <property name="carMark" column="car_mark"/>
+      <!-- join cars to this engine-->
+      <set name="cars" table="cars_p3" cascade="all" fetch="join">
+         <!-- column="mark" is from table cars_p3, property-ref="carMark" - is from Engine class -->
+         <key column="mark" property-ref="carMark"/>
+         <one-to-many class="com.makeev.model.Car"/>
+      </set>
+   </class>
+
+</hibernate-mapping>
+```
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Engine {
+    private int id;
+    private String name;
+    private int power;
+    private String carMark;
+    private Set<Car> cars;
+
+    public Engine(String name, int power, String carMark, Set<Car> cars) {
+        this.name = name;
+        this.power = power;
+        this.carMark = carMark;
+        this.cars = cars;
+    }
+}
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Car {
+    private int id;
+    private String mark;
+    private int cost;
+
+    public Car(String mark, int cost) {
+        this.mark = mark;
+        this.cost = cost;
+    }
+}
+```

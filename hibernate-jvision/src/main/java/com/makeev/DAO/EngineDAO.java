@@ -6,7 +6,7 @@ import com.sun.istack.NotNull;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 
-public class EngineDAO implements DAO<Engine, String> {
+public class EngineDAO implements DAO<Engine, Integer> {
 
     private final SessionFactory factory;
 
@@ -25,19 +25,12 @@ public class EngineDAO implements DAO<Engine, String> {
     }
 
     @Override
-    public Engine read(@NotNull final String s) {
+    public Engine read(@NotNull final Integer id) {
         try(final Session session = factory.openSession()) {
-        final Engine result = session.get(Engine.class, s);
+        final Engine result = session.get(Engine.class, id);
         return result != null ? result : new Engine();
         }
     }
-    public Engine read(@NotNull final int id) {
-        try(final Session session = factory.openSession()) {
-            final Engine result = session.get(Engine.class, id);
-            return result != null ? result : new Engine();
-        }
-    }
-
 
     @Override
     public void update(@NotNull final Engine engine) {
