@@ -10,6 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Engine {
+    private int id;
     private String model;
     private int power;
+
+    public Engine(String model, int power) {
+        this.model = model;
+        this.power = power;
+    }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+
+    <class name="com.makeev.model.Car" table="cars_p2">
+        <id name="id" type="int" column="id"> <generator class ="identity"/></id>
+        <property name="mark" column="mark" />
+        <property name="model" column="model"/>
+        <!-- join engine to car (many cars links to one engine)-->
+        <!-- cascade - what to do with child(engine) when parent(car) has been changed -->
+        <!-- save-update - if new car(add to cars table) has new engine - add new engine to engines_p2 table  -->
+        <!-- default - do nothing, change only cars table-->
+        <many-to-one name="engine" column="engine_id"
+                     class="com.makeev.model.Engine"
+                     cascade="save-update" />
+    </class>
+</hibernate-mapping>

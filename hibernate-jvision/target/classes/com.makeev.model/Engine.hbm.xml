@@ -5,8 +5,10 @@
 
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
 
-   <class name="com.makeev.model.Engine" table="engines">
-      <id name="model" column="model" />
+   <class name="com.makeev.model.Engine" table="engines_p2">
+      <id name="id" type="int" column="id"> <generator class ="identity"/></id>
+      <property name="model" column="model" />
       <property name="power" column="power"/>
    </class>
+
 </hibernate-mapping>

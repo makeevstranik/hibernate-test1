@@ -9,7 +9,7 @@
     <property name="connection.password">***</property>
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 <!--    <property name="show_sql">true</property>-->
-
+      <mapping resource="com.makeev.model/Car.hbm.xml"/>
     <mapping resource="com.makeev.model/Engine.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
